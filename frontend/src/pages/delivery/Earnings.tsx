@@ -38,7 +38,7 @@ const Earnings: React.FC = () => {
     const fetchEarnings = async () => {
       try {
         // Get user object from localStorage and parse it
-        const userData = localStorage.getItem("user");
+        const userData = sessionStorage.getItem("user");
         const user = userData ? JSON.parse(userData) : null;
   
         if (!user || !user.id) {
