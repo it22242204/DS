@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: admin-service
+  namespace: foodiego-backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: admin-service
+  template:
+    metadata:
+      labels:
+        app: admin-service
+    spec:
+      containers:
+      - name: admin-service
+        image: ashokankuganathan/foodiego-admin-service:latest
+        ports:
+        - containerPort: 5100
+        envFrom:
+        - configMapRef:
+            name: admin-service-config

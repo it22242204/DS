@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: restaurant-service
+  namespace: foodiego-backend 
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: restaurant-service
+  template:
+    metadata:
+      labels:
+        app: restaurant-service
+    spec:
+      containers:
+      - name: restaurant-service
+        image: ashokankuganathan/foodiego-restaurant-service:latest
+        ports:
+        - containerPort: 5500
+        envFrom:
+        - configMapRef:
+            name: restaurant-service-config

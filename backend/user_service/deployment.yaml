@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-service
+  namespace: foodiego-backend 
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: user-service
+  template:
+    metadata:
+      labels:
+        app: user-service
+    spec:
+      containers:
+      - name: user-service
+        image: ashokankuganathan/foodiego-user-service:latest
+        ports:
+        - containerPort: 5600
+        envFrom:
+        - configMapRef:
+            name: user-service-config
